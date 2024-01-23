@@ -1,12 +1,6 @@
-#!/usr/bin/python3
 class Square:
     def __init__(self, size=0):
-        if isinstance(size, int) and size >= 0:
-            self.__size = size
-        elif (not isinstance(size, int)):
-            raise TypeError("size must be an integer")
-        elif size < 0:
-            raise ValueError("size must be >= 0")
+        self.size = size
 
     @property
     def size(self):
@@ -14,12 +8,26 @@ class Square:
 
     @size.setter
     def size(self, value):
-        if isinstance(value, int) and value >= 0:
-            self.__size = value
-        elif (not isinstance(value, int)):
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
+        self.__size = value
 
     def area(self):
-        return (self.__size * self.__size)
+        return self.__size ** 2
+
+
+# Test the Square class
+if __name__ == "__main__":
+    my_square = Square(89)
+    print("Area: {} for size: {}".format(my_square.area(), my_square.size))
+
+    my_square.size = 3
+    print("Area: {} for size: {}".format(my_square.area(), my_square.size))
+
+    try:
+        my_square.size = "5 feet"
+        print("Area: {} for size: {}".format(my_square.area(), my_square.size))
+    except Exception as e:
+        print(e)
