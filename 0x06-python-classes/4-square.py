@@ -1,33 +1,45 @@
+#!/usr/bin/python3
+
+
 class Square:
+    """
+    creates square
+    """
+
     def __init__(self, size=0):
-        self.size = size
+        """
+        initializes square
+
+        Args:
+            size: size of side of square
+        """
+        self.__size = size
 
     @property
     def size(self):
+        """
+        finds size
+        """
         return self.__size
 
     @size.setter
     def size(self, value):
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
+        """
+        validates size is an integer that is greater than zero
+        """
+        if type(value) is not int:
+            raise TypeError('size must be an integer')
         elif value < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = value
+            raise ValueError('size must be >= 0')
+        else:
+            self.__size = value
 
     def area(self):
+        """
+        finds area of square
+
+        Returns:
+            area of square
+        """
         return self.__size ** 2
-
-
-# Test the Square class
-if __name__ == "__main__":
-    my_square = Square(89)
-    print("Area: {} for size: {}".format(my_square.area(), my_square.size))
-
-    my_square.size = 3
-    print("Area: {} for size: {}".format(my_square.area(), my_square.size))
-
-    try:
-        my_square.size = "5 feet"
-        print("Area: {} for size: {}".format(my_square.area(), my_square.size))
-    except Exception as e:
-        print(e)
+    
